@@ -1,0 +1,36 @@
+Create Namespace:
+
+Kubectl create ns testns
+
+
+Enable Istio:
+kubectl label ns testns istio-injection=enabled
+
+
+Verify Label:
+kubectl get ns --show-labels
+
+
+
+
+====================
+Generate Traffic
+====================
+
+watch curl -s -o /dev/null <istio ingress LB:app port>
+
+=================================
+Istio objects
+=================================
+ 
+ -> Gateway : Istio Gateway (host and Port). LB from istio-ingressgateway
+
+Get LB from istio-ingressgatewa:
+
+kubectl -n istio-system get svc istio-ingressgateway
+
+
+->VirtualService : to control traffic to actual service and routing %
+
+
+->DestinationRule : Mapping to pods (multiple)
